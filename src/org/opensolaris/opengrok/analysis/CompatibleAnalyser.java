@@ -43,6 +43,7 @@ public class CompatibleAnalyser extends Analyzer {
             case QueryBuilder.DEFS:
                 return new TokenStreamComponents(new PlainSymbolTokenizer(FileAnalyzer.dummyReader));
             case QueryBuilder.PATH:
+                return ModHelper.getPathComponents();
             case QueryBuilder.PROJECT:
                 return new TokenStreamComponents(new PathTokenizer());
             case QueryBuilder.HIST:

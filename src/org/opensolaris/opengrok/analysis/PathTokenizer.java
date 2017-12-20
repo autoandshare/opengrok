@@ -90,7 +90,7 @@ public class PathTokenizer extends Tokenizer {
             if (i >= buf.length) {
                 buf = Arrays.copyOf(buf, buf.length * 2);
             }
-            buf[i++] = Character.toLowerCase((char) c);
+            buf[i++] = (char) c;
             c = input.read();
             charsRead++;
         } while (c != delimiter && c != cdot && !Character.isWhitespace(c) && c != -1);

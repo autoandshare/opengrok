@@ -205,6 +205,7 @@ public class FileAnalyzer extends Analyzer {
             case "full":
                 return new TokenStreamComponents(new PlainFullTokenizer(dummyReader));
             case "path":
+                return ModHelper.getPathComponents();
             case "project":
                 return new TokenStreamComponents(new PathTokenizer());
             case "hist":
