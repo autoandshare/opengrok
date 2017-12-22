@@ -73,6 +73,24 @@ org.opensolaris.opengrok.web.Util"
 %>
 <script type="text/javascript">/* <![CDATA[ */
     document.domReady.push(function() { domReadyMenu(); });
+    function label_clicked(target_id)
+    {
+        var target_obj = document.getElementById(target_id), src_obj;
+        if (target_obj.value)
+            return;
+        var ids = ["q", "defs", "refs", "path"];
+        for (var i = 0; i < ids.length; i++)
+        {
+            src_obj = document.getElementById(ids[i]);
+            if (src_obj.value)
+                break;
+        }
+        if (src_obj.value && (src_obj != target_obj))
+        {
+            target_obj.value = src_obj.value;
+            src_obj.value = "";
+        }
+    }
 /* ]]> */
 </script><%
     }
@@ -162,22 +180,22 @@ org.opensolaris.opengrok.web.Util"
     %>
     <tbody>
     <tr>
-        <td><label for="s1" title="The text token(s) or other fields to be found (lucene query, this is not full text!)">Full&nbsp;Search</label></td>
+        <td><label for="s1" title="The text token(s) or other fields to be found (lucene query, this is not full text!)" onclick="label_clicked('q')">Full&nbsp;Search</label></td>
         <td colspan="2"><input tabindex="1" class="q" name="q" id="q" type="text" value="<%=
                 Util.formQuoteEscape(queryParams.getFreetext()) %>"/></td>
     </tr>
     <tr>
-	<td><label for="s2" title="Definition of function/variable/class">Definition</label></td>
+        <td><label for="s2" title="Definition of function/variable/class" onclick="label_clicked('defs')">Definition</label></td>
         <td colspan="2"><input class="q" tabindex="2" name="defs" id="defs" type="text" value="<%=
             Util.formQuoteEscape(queryParams.getDefs()) %>"/></td>
     </tr>
     <tr>
-        <td><label for="s3" title="Usage of function/variable/class">Symbol</label></td>
+        <td><label for="s3" title="Usage of function/variable/class" onclick="label_clicked('refs')">Symbol</label></td>
         <td colspan="2"><input class="q" tabindex="3" name="refs" id="refs" type="text" value="<%=
             Util.formQuoteEscape(queryParams.getRefs()) %>"/></td>
     </tr>
     <tr>
-        <td><label for="s4" title="path or parts of it, no need to use dividers">File&nbsp;Path</label></td>
+        <td><label for="s4" title="path or parts of it, no need to use dividers" onclick="label_clicked('path')">File&nbsp;Path</label></td>
         <td colspan="2"><input class="q" tabindex="4" name="path" id="path" type="text" value="<%=
             Util.formQuoteEscape(queryParams.getPath()) %>"/></td>
     </tr>
