@@ -101,6 +101,13 @@ include file="pageheader.jspf"
     String context = request.getContextPath();
     String rev = cfg.getRequestedRevision();
 
+    String basename = cfg.getShortPath(path);
+    int index = basename.lastIndexOf(".");
+    if (index != -1)
+    {
+        basename = basename.substring(0, index);
+    }
+
     JSONArray messages = new JSONArray();
     if (cfg.getProject() != null) {
         messages = Util.messagesToJson(cfg.getProject(),
@@ -112,6 +119,7 @@ include file="pageheader.jspf"
     <% } %>
         <a href="<%= context + Prefix.XREF_P %>/">xref</a>: <%= Util
         .breadcrumbPath(context + Prefix.XREF_P, path,'/',"",true,cfg.isDir()) %>
+        <a href="<%= context + "/s?path=" + basename %>">...</a>
         <% if (rev.length() != 0) { %>
         (revision <%= Util.htmlize(rev) %>)
         <% } %>
