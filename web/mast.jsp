@@ -119,7 +119,7 @@ include file="pageheader.jspf"
     <% } %>
         <a href="<%= context + Prefix.XREF_P %>/">xref</a>: <%= Util
         .breadcrumbPath(context + Prefix.XREF_P, path,'/',"",true,cfg.isDir()) %>
-        <a href="<%= context + "/s?path=" + basename %>">...</a>
+        <a href="<%= context + "/s?path=" + basename + "&project=" + cfg.getProject().getName() %>">...</a>
         <% if (rev.length() != 0) { %>
         (revision <%= Util.htmlize(rev) %>)
         <% } %>
